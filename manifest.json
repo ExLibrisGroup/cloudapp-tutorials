@@ -1,0 +1,12 @@
+{
+   "$schema": "./manifest.schema.json",
+   "id": "cloud-app-tutorials",
+   "title": "CloudApp Tutorials",
+   "description": "Tutorials for CloudApps",
+   "author": "Josh Weisman",
+   "contentSecurity": {
+      "sandbox": {
+         "popups": true
+      }
+   }
+}
