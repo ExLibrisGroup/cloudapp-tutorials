@@ -1,0 +1,5 @@
+@mixin theming-component-theme($theme, $typgraphy) {
+  .themed-box {
+    border-color: mat-color(map-get($theme, primary));
+  }
+}

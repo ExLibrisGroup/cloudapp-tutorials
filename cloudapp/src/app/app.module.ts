@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { TopmenuComponent } from './topmenu/topmenu.component';
+import { NewrouteComponent } from './newroute/newroute.component';
+import { ThemingComponent } from './theming/theming.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -21,7 +23,9 @@ export function getToastrModule() {
    declarations: [
       AppComponent,
       MainComponent,
-      TopmenuComponent
+      TopmenuComponent,
+      NewrouteComponent,
+      ThemingComponent,      
    ],
    imports: [
       MaterialModule,
