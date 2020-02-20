@@ -4,6 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, getTranslateModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { TopmenuComponent } from './topmenu/topmenu.component';
 import { NewrouteComponent } from './newroute/newroute.component';
 import { ThemingComponent } from './theming/theming.component';
+import { SettingsComponent } from './settings/settings.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -25,7 +27,8 @@ export function getToastrModule() {
       MainComponent,
       TopmenuComponent,
       NewrouteComponent,
-      ThemingComponent,      
+      ThemingComponent,
+      SettingsComponent
    ],
    imports: [
       MaterialModule,
@@ -33,6 +36,8 @@ export function getToastrModule() {
       BrowserAnimationsModule,
       AppRoutingModule,
       HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
       getTranslateModule(),
       getToastrModule()
    ],
