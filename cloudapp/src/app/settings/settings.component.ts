@@ -27,7 +27,6 @@ export class SettingsComponent implements OnInit {
       showValue: this.fb.control(false),
       pageSize: this.fb.control(10)
     });
-    //this.settingsService.remove().subscribe(()=>this.load());
     this.load();
   }
 

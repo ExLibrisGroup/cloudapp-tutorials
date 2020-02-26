@@ -13,6 +13,7 @@ import { TopmenuComponent } from './topmenu/topmenu.component';
 import { NewrouteComponent } from './newroute/newroute.component';
 import { ThemingComponent } from './theming/theming.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ParallelComponent } from './parallel/parallel.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -28,7 +29,8 @@ export function getToastrModule() {
       TopmenuComponent,
       NewrouteComponent,
       ThemingComponent,
-      SettingsComponent
+      SettingsComponent,
+      ParallelComponent
    ],
    imports: [
       MaterialModule,

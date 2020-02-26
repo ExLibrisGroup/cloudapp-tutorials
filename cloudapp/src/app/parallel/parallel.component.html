@@ -1,0 +1,8 @@
+<p>
+  <button mat-stroked-button type="button" color="primary" (click)="run()">Run</button>
+</p>
+<ul>
+  <li *ngFor="let user of users">
+    <strong>{{ user.name }}</strong>: ${{ user.fees.value }}
+  </li>
+</ul>

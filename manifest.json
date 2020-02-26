@@ -1,12 +1,20 @@
 {
-   "$schema": "./manifest.schema.json",
    "id": "cloud-app-tutorials",
    "title": "CloudApp Tutorials",
-   "description": "Tutorials for CloudApps",
+   "subtitle": "Accompanying code for the CloudApp tutorials in the Developer Network",
+   "description": "The Ex Libris Developer Network includes a number of detailed tutorials which demonstrate various capabilities of CloudApps. For more information, see https://developers.exlibrisgroup.com/cloudapps/tutorials/.",
    "author": "Josh Weisman",
    "contentSecurity": {
       "sandbox": {
          "popups": true
       }
+   },
+   "pages": {
+      "settings": "/#/settings",
+      "help": "https://github.com/ExLibrisGroup/cloudapp-tutorials"
+   },
+   "icon": {
+      "type": "font",
+      "value": "fa fa-graduation-cap"
    }
 }
