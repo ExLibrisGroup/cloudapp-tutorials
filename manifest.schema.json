@@ -182,8 +182,8 @@
       "properties": {
         "connectSrc": {
           "$id": "#/properties/contentSecurity/connectSrc",
-          "title": "CloudApp External URLs",
-          "description": "External URLs used in the CloudApp",
+          "title": "External URLs",
+          "description": "External URLs that the app can connect to",
           "type": "array",
           "items": {
             "type": "string"
@@ -191,6 +191,17 @@
           "minItems": 0,
           "uniqueItems": true
         },
+        "frameSrc" : {
+          "$id": "#/properties/contentSecurity/frameSrc",
+          "title": "External Frames",
+          "description": "External URLs that app uses frames from",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },        
         "sandbox": {
           "$id": "#/properties/contentSecurity/sandbox",
           "title": "CloudApp sandboxing options",

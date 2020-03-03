@@ -14,6 +14,7 @@ import { NewrouteComponent } from './newroute/newroute.component';
 import { ThemingComponent } from './theming/theming.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ParallelComponent } from './parallel/parallel.component';
+import { ExternalComponent } from './external/external.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -30,7 +31,8 @@ export function getToastrModule() {
       NewrouteComponent,
       ThemingComponent,
       SettingsComponent,
-      ParallelComponent
+      ParallelComponent,
+      ExternalComponent
    ],
    imports: [
       MaterialModule,

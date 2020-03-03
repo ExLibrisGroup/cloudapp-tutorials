@@ -1,0 +1,32 @@
+.commands-container {
+  margin: 20px 0;
+  width: fit-content;
+}
+
+.spinner {
+  float: right;
+}
+
+.commands-container button {
+  margin-right: 10px;
+}
+
+.settings-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.settings-control {
+  margin: 0 10px;
+}
+
+.pull-right {
+  margin-right: 15px;
+  float: right;
+}
+
+li {
+  margin-bottom: 5px;
+}

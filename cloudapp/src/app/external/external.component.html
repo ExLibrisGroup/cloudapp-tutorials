@@ -1,0 +1,44 @@
+<form>
+  <section class="settings-section">
+    <mat-form-field>
+      <mat-label>Identifier Type</mat-label>
+      <mat-select value="isbn" #identifierType>
+        <mat-option value="oclc">OCLC Number</mat-option>
+        <mat-option value="lccn">LCCN</mat-option>
+        <mat-option value="issn">ISSN</mat-option>
+        <mat-option value="isbn">ISBN</mat-option>
+        <mat-option value="htid">HathiTrust Volume ID</mat-option>
+        <mat-option value="recordnumber">HathiTrust record number</mat-option>
+      </mat-select>
+    </mat-form-field>  
+  </section>
+  <section class="settings-section">
+    <mat-form-field>
+      <mat-label>Identifier</mat-label>
+      <input matInput #identifier value="0394530934">
+    </mat-form-field>
+  </section>
+</form>
+
+<div class="commands-container">
+  <button mat-stroked-button type="button" color="primary" (click)="search(identifierType.value, identifier.value)">Search</button>
+  <mat-spinner diameter="30" class="spinner" *ngIf="running"></mat-spinner>
+</div>
+
+<mat-card *ngIf="record">
+  <mat-card-header>
+    <mat-card-title>HathiTrust Record</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <img *ngIf="record.items.length>0" src="https://babel.hathitrust.org/cgi/imgsrv/cover?id={{record.items[0].htid}}" class="pull-right">
+    <ul>
+      <li><strong>Record ID: </strong> <a href="{{record.recordURL}}" target="_blank">{{ record.id }}</a></li>
+      <li><strong>Title: </strong>{{ record.titles[0] }}</li>
+      <li><strong>Held By:</strong>
+        <ul>
+          <li *ngFor="let item of record.items"><a href="{{item.itemURL}}" target="_blank">{{item.orig}}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

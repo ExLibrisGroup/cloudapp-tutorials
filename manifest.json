@@ -1,13 +1,13 @@
 {
    "id": "cloud-app-tutorials",
-   "title": "CloudApp Tutorials",
-   "subtitle": "Accompanying code for the CloudApp tutorials in the Developer Network",
-   "description": "The Ex Libris Developer Network includes a number of detailed tutorials which demonstrate various capabilities of CloudApps. For more information, see https://developers.exlibrisgroup.com/cloudapps/tutorials/.",
+   "title": "Cloud App Tutorials",
+   "subtitle": "Accompanying code for the Cloud App tutorials in the Developer Network",
+   "description": "The Ex Libris Developer Network includes a number of detailed tutorials which demonstrate various capabilities of Cloud Apps. For more information, see https://developers.exlibrisgroup.com/cloudapps/tutorials/.",   
    "author": "Josh Weisman",
    "contentSecurity": {
-      "sandbox": {
-         "popups": true
-      }
+      "connectSrc": [
+         "https://catalog.hathitrust.org/"
+      ]
    },
    "pages": {
       "settings": "/#/settings",

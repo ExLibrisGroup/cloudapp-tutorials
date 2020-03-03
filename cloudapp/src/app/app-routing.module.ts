@@ -5,6 +5,7 @@ import { NewrouteComponent } from './newroute/newroute.component';
 import { ThemingComponent } from './theming/theming.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ParallelComponent } from './parallel/parallel.component';
+import { ExternalComponent } from './external/external.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'theming', component: ThemingComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'parallel', component: ParallelComponent },
+  { path: 'external', component: ExternalComponent },
 ];
 
 @NgModule({
