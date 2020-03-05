@@ -9,5 +9,16 @@
 }
 
 @mixin global-styles {
-    /* Add global styles here */
+  .commands-container {
+      margin: 20px 0;
+      width: fit-content;
+  }
+
+  .spinner {
+    float: right;
+  }
+
+  .commands-container button {
+    margin-right: 10px;
+  }
 }

@@ -1,0 +1,17 @@
+<div>
+  <div *ngIf="bib; else nobib">
+    <p>Bibliographic record:</p>
+    <ul>
+      <li><strong>MMS ID: </strong>{{ bib.mms_id }}</li>
+      <li><strong>Title: </strong>{{ bib.title }}</li>
+      <li><strong>Author: </strong>{{ bib.author }}</li>
+    </ul>
+    <div class="commands-container">
+      <button mat-stroked-button (click)="addNote()" color="primary">Add Note</button>
+      <mat-spinner diameter="30" class="spinner" *ngIf="running"></mat-spinner>
+    </div>
+  </div>
+  <ng-template #nobib>      
+      Please navigate to a bibliographic record.
+  </ng-template>
+</div>

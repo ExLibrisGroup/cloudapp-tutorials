@@ -15,6 +15,7 @@ import { ThemingComponent } from './theming/theming.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ParallelComponent } from './parallel/parallel.component';
 import { ExternalComponent } from './external/external.component';
+import { XmlComponent } from './xml/xml.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -32,7 +33,8 @@ export function getToastrModule() {
       ThemingComponent,
       SettingsComponent,
       ParallelComponent,
-      ExternalComponent
+      ExternalComponent,
+      XmlComponent
    ],
    imports: [
       MaterialModule,

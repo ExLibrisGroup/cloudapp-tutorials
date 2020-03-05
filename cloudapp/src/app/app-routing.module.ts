@@ -6,6 +6,7 @@ import { ThemingComponent } from './theming/theming.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ParallelComponent } from './parallel/parallel.component';
 import { ExternalComponent } from './external/external.component';
+import { XmlComponent } from './xml/xml.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'parallel', component: ParallelComponent },
   { path: 'external', component: ExternalComponent },
+  { path: 'xml', component: XmlComponent },
 ];
 
 @NgModule({
