@@ -1,0 +1,26 @@
+<div *ngIf="form; else noitem">
+  <p><strong>BIB Title:</strong> {{ form.get('bib_data.title').value }}</p>
+  <form [formGroup]="form">
+    <ng-container formGroupName="item_data">  
+      <mat-form-field>
+        <mat-label>Barcode</mat-label>
+        <input matInput formControlName="barcode">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enumeration A</mat-label>
+        <input matInput formControlName="enumeration_a">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Chronology I</mat-label>
+        <input matInput formControlName="chronology_i">
+      </mat-form-field> 
+    </ng-container>
+  </form>
+  <div class="commands-container">
+    <button mat-stroked-button type="button" color="primary" (click)="save()" [disabled]="!form.dirty">Save</button>
+    <mat-spinner diameter="30" class="spinner" *ngIf="saving"></mat-spinner>
+  </div>
+</div>
+<ng-template #noitem>      
+  Please navigate to an item record.
+</ng-template>
