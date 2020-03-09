@@ -9,6 +9,7 @@ import { ExternalComponent } from './external/external.component';
 import { XmlComponent } from './xml/xml.component';
 import { BindComponent } from './bind/bind.component';
 import { StoreComponent } from './store/store.component';
+import { TranslateComponent } from './translate/translate.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'xml', component: XmlComponent },
   { path: 'bind', component: BindComponent },
   { path: 'store', component: StoreComponent },
+  { path: 'translate', component: TranslateComponent },
 ];
 
 @NgModule({

@@ -30,7 +30,9 @@ export class BindComponent implements OnInit, OnDestroy {
       const entities = (pageInfo.entities||[]).filter(e=>e.type=='ITEM');
       if (entities.length > 0) {
         this.restService.call(entities[0].link)
-          .subscribe(res=>this.form = toFormGroup(res) as FormGroup);
+          .subscribe(res=>this.form = toFormGroup(res));
+      } else {
+        this.form = null;
       }
     });
   }

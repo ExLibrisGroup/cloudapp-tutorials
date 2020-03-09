@@ -1,0 +1,17 @@
+{
+	"Translate": {
+		"Button": "Di hola",
+		"ButtonDesc": "Esto muestra cómo traducir el contenido de un botón y definir la cadena dentro del archivo de mecanografía.",
+		"Intro": "Este tutorial muestra algunas de las diversas formas de indicar cadenas para la traducción. Esto muestra cómo traducir texto e incluir parámetros como la fecha de hoy ({{date}})",
+		"Policies": {
+			"DAILY": "Diario",
+			"MONTHLY": "Mensual",
+			"WEEKLY": "Semanal",
+			"YEARLY": "Anual"
+		},
+		"Policy": "Política",
+		"Prompt": "Hola {{name}}",
+		"SelectDesc": "Esto muestra cómo traducir las descripciones de las opciones seleccionadas.",
+		"Title": "Traduciendo tu aplicación"
+	}
+}

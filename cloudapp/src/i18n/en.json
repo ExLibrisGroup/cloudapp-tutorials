@@ -1,0 +1,17 @@
+{
+	"Translate": {
+		"Button": "Say hi",
+		"ButtonDesc": "This shows how to translate the contents of a button and to define the string inside of the typescript file.",
+		"Intro": "This tutorial shows some of the several ways to indicate strings for translation. This shows how to translate text and include parameters such as today's date ({{date}})",
+		"Policies": {
+			"DAILY": "Daily",
+			"MONTHLY": "Monthly",
+			"WEEKLY": "Weekly",
+			"YEARLY": "Yearly"
+		},
+		"Policy": "Policy",
+		"Prompt": "Hello {{name}}",
+		"SelectDesc": "This shows how to translate the descriptions of select options.",
+		"Title": "Translating your app"
+	}
+}

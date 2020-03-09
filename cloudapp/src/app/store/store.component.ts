@@ -28,7 +28,7 @@ export class StoreComponent implements OnInit {
 
     this.storeService.get(FORM_NAME).subscribe( value => {
       if (value) {
-        this.form = toFormGroup(value) as FormGroup;
+        this.form = toFormGroup(value);
       }
 
       this.form.valueChanges.pipe(
