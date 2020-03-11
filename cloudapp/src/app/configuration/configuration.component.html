@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <section class="config-section">
+    <mat-form-field>
+      <input matInput placeholder="Service URL" formControlName="serviceUrl">
+    </mat-form-field>  
+  </section>
+</form>
+
+<div class="commands-container">
+  <button mat-stroked-button type="button" color="primary" (click)="save()" [disabled]="!form.dirty">Save</button>
+  <mat-spinner diameter="30" class="spinner" *ngIf="saving"></mat-spinner>
+</div>

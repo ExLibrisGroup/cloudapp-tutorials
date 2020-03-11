@@ -20,5 +20,9 @@
    "icon": {
       "type": "font",
       "value": "fa fa-graduation-cap"
+   },
+   "fullscreen": {
+      "allow": true,
+      "open": false
    }
 }

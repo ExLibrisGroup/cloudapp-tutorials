@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { CloudAppStoreService } from '@exlibris/exl-cloudapp-angular-lib';
-import { toFormGroup } from '../utils';
+import { CloudAppStoreService, FormGroupUtil } from '@exlibris/exl-cloudapp-angular-lib';
 
-const FORM_NAME = 'StoreForm';
+const KEY = 'StoreForm';
 
 @Component({
   selector: 'app-store',
@@ -26,14 +25,14 @@ export class StoreComponent implements OnInit {
       content: new FormControl()
     });
 
-    this.storeService.get(FORM_NAME).subscribe( value => {
+    this.storeService.get(KEY).subscribe( value => {
       if (value) {
-        this.form = toFormGroup(value);
+        this.form = FormGroupUtil.toFormGroup(value);
       }
 
       this.form.valueChanges.pipe(
         debounceTime(500), 
-        switchMap(val=>this.storeService.set(FORM_NAME, val))
+        switchMap(val=>this.storeService.set(KEY, val))
       ).subscribe()
     })
   }

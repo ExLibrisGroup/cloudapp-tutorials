@@ -12,6 +12,7 @@
     <li><a [routerLink]="['xml']">Working with bibliographic records in XML</a></li>
     <li><a [routerLink]="['bind']">Model binding with REST objects</a></li>  
     <li><a [routerLink]="['store']">Using the Store Service</a></li>  
-    <li><a [routerLink]="['translate']">Translating your app</a></li>  
+    <li><a [routerLink]="['translate']">Translating your app</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['configuration']">Using the Configuration Service</a></li>
   </ul>
 </section>

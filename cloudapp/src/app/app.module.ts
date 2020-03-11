@@ -19,6 +19,7 @@ import { XmlComponent } from './xml/xml.component';
 import { BindComponent } from './bind/bind.component';
 import { StoreComponent } from './store/store.component';
 import { TranslateComponent } from './translate/translate.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -40,7 +41,8 @@ export function getToastrModule() {
       XmlComponent,
       BindComponent,
       StoreComponent,
-      TranslateComponent
+      TranslateComponent,
+      ConfigurationComponent
    ],
    imports: [
       MaterialModule,
