@@ -19,7 +19,7 @@
    },
    "icon": {
       "type": "font",
-      "value": "fa fa-graduation-cap"
+      "value": "fa fa-lightbulb-o"
    },
    "fullscreen": {
       "allow": true,
