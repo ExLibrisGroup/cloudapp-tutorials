@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CloudAppSettingsService } from '@exlibris/exl-cloudapp-angular-lib';
+import { FormGroup } from '@angular/forms';
+import { CloudAppSettingsService, FormGroupUtil } from '@exlibris/exl-cloudapp-angular-lib';
 import { ToastrService } from 'ngx-toastr';
 import { Settings } from '../models/settings';
 
@@ -16,26 +16,17 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private fb: FormBuilder,
     private settingsService: CloudAppSettingsService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.appService.setTitle('Settings');
-    this.form = this.fb.group({
-      showValue: this.fb.control(false),
-      pageSize: this.fb.control(10)
-    });
-    this.load();
-  }
-
-  load() {
     this.settingsService.getAsFormGroup().subscribe( settings => {
-      if (Object.keys(settings.value).length!=0) {
-        this.form = settings;
-      }
-    });   
+      this.form = Object.keys(settings.value).length==0 ?
+        FormGroupUtil.toFormGroup(new Settings()) :
+        settings;
+    });
   }
 
   save() {

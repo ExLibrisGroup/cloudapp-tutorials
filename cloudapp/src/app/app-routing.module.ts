@@ -11,6 +11,7 @@ import { BindComponent } from './bind/bind.component';
 import { StoreComponent } from './store/store.component';
 import { TranslateComponent } from './translate/translate.component';
 import { ConfigurationComponent, ConfigurationGuard } from './configuration/configuration.component';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'bind', component: BindComponent },
   { path: 'store', component: StoreComponent },
   { path: 'translate', component: TranslateComponent },
+  { path: 'multi-select', component: MultiSelectComponent },
   { path: 'configuration', component: ConfigurationComponent, canActivate: [ConfigurationGuard] },
 ];
 

@@ -20,6 +20,8 @@ import { BindComponent } from './bind/bind.component';
 import { StoreComponent } from './store/store.component';
 import { TranslateComponent } from './translate/translate.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { SelectEntitiesComponent } from './multi-select/select-entities/select-entities.component';
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -42,7 +44,9 @@ export function getToastrModule() {
       BindComponent,
       StoreComponent,
       TranslateComponent,
-      ConfigurationComponent
+      ConfigurationComponent,
+      MultiSelectComponent,
+      SelectEntitiesComponent
    ],
    imports: [
       MaterialModule,

@@ -1,0 +1,12 @@
+<p>A total of <strong>{{ ids.size }}</strong> items have been selected.</p>
+<div *ngIf="entities.length>0 else noEntities">
+  <p>Select the desired items:</p>
+  <app-select-entities #selectEntities 
+    (entitySelected)="onEntitySelected($event)"
+    [entityList]="entities"
+    [selectedEntities]="ids">
+  </app-select-entities>
+</div>
+<ng-template #noEntities>
+  Please navigate to a list.
+</ng-template>
