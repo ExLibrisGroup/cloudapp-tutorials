@@ -3,9 +3,10 @@ import { AppService } from '../app.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CloudAppConfigService, CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
 import { ToastrService } from 'ngx-toastr';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ErrorMessages } from '../static/error.component';
 
 @Component({
   selector: 'app-configuration',
@@ -61,15 +62,14 @@ export class ConfigurationGuard implements CanActivate {
     private eventsService: CloudAppEventsService,
     private router: Router
   ) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
-      return this.eventsService.getInitData().pipe(map( data => {
-        if (!data.user.isAdmin) {
-          this.router.navigate(['/']);
-          return false;
-        }
-        return true;
-      }))
+  canActivate(): Observable<boolean> {
+    return this.eventsService.getInitData().pipe(map( data => {
+      if (!data.user.isAdmin) {
+        this.router.navigate(['/error'], 
+          { queryParams: { error: ErrorMessages.NO_ACCESS}});
+        return false;
+      }
+      return true;
+    }))
   }
 }

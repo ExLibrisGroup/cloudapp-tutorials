@@ -12,6 +12,7 @@ import { StoreComponent } from './store/store.component';
 import { TranslateComponent } from './translate/translate.component';
 import { ConfigurationComponent, ConfigurationGuard } from './configuration/configuration.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { ErrorComponent } from './static/error.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'translate', component: TranslateComponent },
   { path: 'multi-select', component: MultiSelectComponent },
   { path: 'configuration', component: ConfigurationComponent, canActivate: [ConfigurationGuard] },
+  { path: 'error', component: ErrorComponent }
 ];
 
 @NgModule({
