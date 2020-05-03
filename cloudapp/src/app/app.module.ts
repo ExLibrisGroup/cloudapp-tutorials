@@ -22,6 +22,7 @@ import { TranslateComponent } from './translate/translate.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { SelectEntitiesComponent } from './multi-select/select-entities/select-entities.component';
+import { LightboxComponent } from './external/lightbox/lightbox.component'
 
 export function getToastrModule() {
   return ToastrModule.forRoot({
@@ -46,7 +47,8 @@ export function getToastrModule() {
       TranslateComponent,
       ConfigurationComponent,
       MultiSelectComponent,
-      SelectEntitiesComponent
+      SelectEntitiesComponent,
+      LightboxComponent
    ],
    imports: [
       MaterialModule,

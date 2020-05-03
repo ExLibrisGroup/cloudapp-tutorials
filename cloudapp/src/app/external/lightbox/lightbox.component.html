@@ -1,0 +1,13 @@
+<div id="imgModal" class="slide-modal">
+  <span class="image-counter">{{slideIndex}} of {{images?.length}}</span>
+  <span class="close cursor" (click)="closeModal()">&times;</span>
+  <div class="slide-modal-content">
+    <div id="imgPane">
+      <img src="{{src}}" *ngIf="!loading">
+    </div>
+    <mat-spinner diameter="75" class="spinner" *ngIf="loading" color="accent"></mat-spinner>
+    <a class="prev" (click)="nextImage(-1)">&#10094;</a>
+    <a class="next" (click)="nextImage(1)">&#10095;</a>
+  </div>
+</div>
+
