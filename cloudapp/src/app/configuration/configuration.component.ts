@@ -32,9 +32,9 @@ export class ConfigurationComponent implements OnInit {
   }
 
   load() {
-    this.configService.getAsFormGroup().subscribe( settings => {
-      if (Object.keys(settings.value).length!=0) {
-        this.form = settings;
+    this.configService.getAsFormGroup().subscribe( config => {
+      if (Object.keys(config.value).length!=0) {
+        this.form = config;
       }
     });   
   }
@@ -42,8 +42,8 @@ export class ConfigurationComponent implements OnInit {
   save() {
     this.saving = true;
     this.configService.set(this.form.value).subscribe(
-      response => {
-        this.toastr.success('Settings successfully saved.');
+      () => {
+        this.toastr.success('Configuration successfully saved.');
         this.form.markAsPristine();
       },
       err => this.toastr.error(err.message),
