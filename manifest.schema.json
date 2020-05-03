@@ -24,8 +24,8 @@
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://exlibrisgroup.com/cloudapps/manifest.schema.json",
-  "title": "Ex Libris CloudApp Manifest",
-  "description": "This manifest will contain CloudApp metadata",
+  "title": "Ex Libris Cloud App Manifest",
+  "description": "This manifest will contain Cloud App metadata",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -40,48 +40,54 @@
     },
     "id": {
       "$id": "#/properties/id",
-      "title": "CloudApp ID",
-      "description": "CloudApp's unique identifier",
+      "title": "Cloud App ID",
+      "description": "Cloud App's unique identifier",
       "type": "string"
     },
     "version": {
       "$id": "#/properties/version",
-      "title": "CloudApp Version",
+      "title": "Cloud App Version",
       "type": "string"
     },
     "author": {
       "$id": "#/properties/author",
-      "title": "CloudApp Author",
-      "description": "CloudApp author name",
+      "title": "Cloud App Author",
+      "description": "Cloud App author name",
       "type": "string"
     },
+    "license": {
+      "$id": "#/properties/license",
+      "title": "Cloud App License",
+      "description": "Link to the license or terms of use for the app",
+      "type": "string"
+    },    
     "title": {
       "$id": "#/properties/title",
       "$ref": "#/definitions/label",
-      "title": "CloudApp Title",
-      "description": "CloudApp title text"
+      "title": "Cloud App Title",
+      "description": "Cloud App title text"
     },
     "subtitle": {
       "$id": "#/properties/subtitle",
       "$ref": "#/definitions/label",
-      "title": "CloudApp Subtitle",
-      "description": "CloudApp subtitle text"
+      "title": "Cloud App Subtitle",
+      "description": "Cloud App subtitle text"
     },
     "description": {
       "$id": "#/properties/description",
       "$ref": "#/definitions/label",
-      "title": "CloudApp Description",
-      "description": "CloudApp description text"
+      "title": "Cloud App Description",
+      "description": "Cloud App description text"
     },
     "icon": {
       "$id": "#/properties/icon",
-      "title": "CloudApp Icon",
-      "description": "CloudApp Icon",
+      "title": "Cloud App Icon",
+      "description": "Cloud App Icon",
       "type": "object",
       "properties": {
         "type": {
           "$id": "#/properties/icon/type",
-          "title": "CloudApp Icon Type",
+          "title": "Cloud App Icon Type",
           "type": "string",
           "enum": [
             "font",
@@ -90,7 +96,7 @@
         },
         "value": {
           "$id": "#/properties/icon/value",
-          "title": "CloudApp Icon Value",
+          "title": "Cloud App Icon Value",
           "type": "string"
         }
       },
@@ -101,20 +107,20 @@
     },
     "fullscreen": {
       "$id": "#/properties/fullscreen",
-      "title": "CloudApp Fullscreen Settings",
+      "title": "Cloud App Fullscreen Settings",
       "type": "object",
       "properties": {
         "allow": {
           "$id": "#/properties/fullscreen/allow",
-          "title": "CloudApp Allow Fullscreen",
-          "description": "Allow the CloudApp to be presented in fullscreen",
+          "title": "Cloud App Allow Fullscreen",
+          "description": "Allow the Cloud App to be presented in fullscreen",
           "type": "boolean",
           "default": true
         },
         "open": {
           "$id": "#/properties/fullscreen/open",
-          "title": "Open CloudApp in Fullscreen",
-          "description": "Indicates that the CloudApp should be opened in fullscreen",
+          "title": "Open Cloud App in Fullscreen",
+          "description": "Indicates that the Cloud App should be opened in fullscreen",
           "type": "boolean",
           "default": false
         }
@@ -137,27 +143,33 @@
     },
     "pages": {
       "type": "object",
-      "title": "CloudApp Pages",
+      "title": "Cloud App Pages",
       "description": "Use to specify availability and location of special pages",
       "properties": {
         "settings": {
           "$id": "#/properties/pages/settings",
-          "title": "CloudApp Settings Page",
-          "description": "CloudApp settings page location (must be in app)",
+          "title": "Cloud App Settings Page",
+          "description": "Cloud App settings page location (must be in app)",
+          "type": "string"
+        },
+        "config": {
+          "$id": "#/properties/pages/config",
+          "title": "Cloud App config Page",
+          "description": "Cloud App Institution-level config page location (must be in app)",
           "type": "string"
         },
         "help": {
           "$id": "#/properties/pages/help",
-          "title": "CloudApp Help Page",
-          "description": "CloudApp help page location (may be external)",
+          "title": "Cloud App Help Page",
+          "description": "Cloud App help page location (may be external)",
           "type": "string"
         }
       }
     },
     "entities": {
       "$id": "#/properties/entities",
-      "title": "CloudApp Supported Entity Types",
-      "description": "Entity types that the CloudApp supports",
+      "title": "Cloud App Supported Entity Types",
+      "description": "Entity types that the Cloud App supports",
       "type": "array",
       "items": {
         "type": "string"
@@ -167,8 +179,8 @@
     },
     "roles": {
       "$id": "#/properties/roles",
-      "title": "CloudApp Roles",
-      "description": "Roles that the CloudApp requires",
+      "title": "Cloud App Roles",
+      "description": "Roles that the Cloud App requires",
       "type": "array",
       "items": {
         "type": "string"
@@ -204,21 +216,21 @@
         },        
         "sandbox": {
           "$id": "#/properties/contentSecurity/sandbox",
-          "title": "CloudApp sandboxing options",
-          "description": "Enable certain attributes for CloudApp sandbox",
+          "title": "Cloud App sandboxing options",
+          "description": "Enable certain attributes for Cloud App sandbox",
           "type": "object",
           "properties": {
             "modals": {
               "$id": "#/properties/contentSecurity/sandbox/modals",
               "title": "Allow modals",
-              "description": "Allow the CloudApp to open modal windows",
+              "description": "Allow the Cloud App to open modal windows",
               "type": "boolean",
               "default": false
             },
             "popups": {
               "$id": "#/properties/contentSecurity/sandbox/popups",
               "title": "Allow popups",
-              "description": "Allow the CloudApp to open popups (such as window.open(), target=\"_blank\", or showModalDialog()). If this keyword is not used, the popup will silently fail to open",
+              "description": "Allow the Cloud App to open popups (such as window.open(), target=\"_blank\", or showModalDialog()). If this keyword is not used, the popup will silently fail to open",
               "type": "boolean",
               "default": false
             }
