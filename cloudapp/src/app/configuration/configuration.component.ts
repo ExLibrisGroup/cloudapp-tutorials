@@ -1,11 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CloudAppConfigService, CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
+import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService } from '@exlibris/exl-cloudapp-angular-lib';
 import { ToastrService } from 'ngx-toastr';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 import { ErrorMessages } from '../static/error.component';
 
 @Component({
@@ -58,18 +58,28 @@ export class ConfigurationComponent implements OnInit {
   providedIn: 'root',
 })
 export class ConfigurationGuard implements CanActivate {
-  constructor(
+  constructor (
     private eventsService: CloudAppEventsService,
+    private restService: CloudAppRestService,
     private router: Router
   ) {}
+
   canActivate(): Observable<boolean> {
-    return this.eventsService.getInitData().pipe(map( data => {
-      if (!data.user.isAdmin) {
-        this.router.navigate(['/error'], 
-          { queryParams: { error: ErrorMessages.NO_ACCESS}});
-        return false;
-      }
-      return true;
-    }))
+    return this.eventsService.getInitData().pipe(
+      /* Until primaryId is available: */
+      map( data => `first_name~${encodeURIComponent(data.user.firstName.replace(' ', '+'))}+AND+last_name~${encodeURIComponent(data.user.lastName.replace(' ','+'))}`),
+      flatMap( query => this.restService.call(`/users?q=${query}`)),
+      map( resp => resp.user[0].primary_id ),
+      // map( data => data.user.primaryId ),
+      flatMap( primaryId => this.restService.call(`/users/${primaryId}`)),
+      map( user => {
+        if (!user.user_role.some(role=>role.role_type.value=='221')) {
+          this.router.navigate(['/error'], 
+            { queryParams: { error: ErrorMessages.NO_ACCESS }});
+          return false;
+        }
+        return true;
+      })
+    );
   }
 }
