@@ -1,11 +1,11 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService } from '@exlibris/exl-cloudapp-angular-lib';
+import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService, InitData } from '@exlibris/exl-cloudapp-angular-lib';
 import { ToastrService } from 'ngx-toastr';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, flatMap } from 'rxjs/operators';
+import { Observable, iif, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { ErrorMessages } from '../static/error.component';
 
 @Component({
@@ -67,11 +67,14 @@ export class ConfigurationGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.eventsService.getInitData().pipe(
       /* Until primaryId is available: */
-      map( data => `first_name~${encodeURIComponent(data.user.firstName.replace(' ', '+'))}+AND+last_name~${encodeURIComponent(data.user.lastName.replace(' ','+'))}`),
-      flatMap( query => this.restService.call(`/users?q=${query}`)),
-      map( resp => resp.user[0].primary_id ),
-      // map( data => data.user.primaryId ),
-      flatMap( primaryId => this.restService.call(`/users/${primaryId}`)),
+      switchMap(data => iif(() => 
+        data.user.primaryId==null,
+        this.restService.call(`/users?q=${query(data)}`).pipe(
+          map( resp => resp.user[0].primary_id )
+        ),
+        of(data.user.primaryId)
+      )),
+      switchMap( primaryId => this.restService.call(`/users/${primaryId}`)),
       map( user => {
         if (!user.user_role.some(role=>role.role_type.value=='221')) {
           this.router.navigate(['/error'], 
@@ -83,3 +86,6 @@ export class ConfigurationGuard implements CanActivate {
     );
   }
 }
+
+const query = (data: InitData) => `first_name~${q(data.user.firstName)}+AND+last_name~${q(data.user.lastName)}`;
+const q = val => encodeURIComponent(val.replace(' ', '+'));
