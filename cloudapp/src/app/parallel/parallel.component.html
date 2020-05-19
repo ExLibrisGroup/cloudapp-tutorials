@@ -1,8 +1,26 @@
+<div class="loading-shade" *ngIf="loading">
+  <mat-progress-spinner 
+    mode="indeterminate"
+    diameter="50"
+    >
+  </mat-progress-spinner>
+</div>
+<mat-form-field>
+  <mat-label>Number of users to retrieve</mat-label>
+  <mat-select [(value)]="num">
+    <mat-option [value]="5">5</mat-option>
+    <mat-option [value]="10">10</mat-option>
+    <mat-option [value]="20">20</mat-option>
+    <mat-option [value]="30">30</mat-option>
+    <mat-option [value]="40">40</mat-option>
+    <mat-option [value]="50">50</mat-option>
+  </mat-select>
+</mat-form-field>
 <p>
-  <button mat-stroked-button type="button" color="primary" (click)="run()">Run</button>
+  <button mat-stroked-button type="button" color="primary" (click)="run()">Retrieve users</button>
 </p>
 <ul>
   <li *ngFor="let user of users">
-    <strong>{{ user.name }}</strong>: ${{ user.fees.value }}
+    <strong>{{ user.full_name }}</strong>: ${{ user.fees.value }}
   </li>
 </ul>

@@ -50,11 +50,12 @@ export class SelectItem {
   checked: boolean;
   id: string;
   description: string;
+  code: string;
   name: string;
 
   constructor(item: Partial<SelectItem>, checker: (id: string) => boolean) {
     Object.assign(this, item);
-    this.name = [this.description, this.id].join(' / ');
+    this.name = (this.description || this.code) || this.id;
     this.checked = checker(item.id);
   }
 }
