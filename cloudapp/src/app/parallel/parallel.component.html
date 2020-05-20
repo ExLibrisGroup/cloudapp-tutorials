@@ -1,7 +1,8 @@
 <div class="loading-shade" *ngIf="loading">
   <mat-progress-spinner 
-    mode="indeterminate"
+    [mode]="showProgress ? 'determinate' : 'indeterminate'"
     diameter="50"
+    [value]="percentComplete"
     >
   </mat-progress-spinner>
 </div>
@@ -14,11 +15,15 @@
     <mat-option [value]="30">30</mat-option>
     <mat-option [value]="40">40</mat-option>
     <mat-option [value]="50">50</mat-option>
+    <mat-option [value]="100">100</mat-option>
   </mat-select>
 </mat-form-field>
-<p>
+<mat-checkbox [(ngModel)]="showProgress" labelPosition="before">Show progress</mat-checkbox>   
+<div class="commands-container">
   <button mat-stroked-button type="button" color="primary" (click)="run()">Retrieve users</button>
-</p>
+  <button mat-flat-button type="button" (click)="clear()">Clear</button>
+</div>
+
 <ul>
   <li *ngFor="let user of users">
     <strong>{{ user.full_name }}</strong>: ${{ user.fees.value }}

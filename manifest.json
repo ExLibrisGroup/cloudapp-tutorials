@@ -26,5 +26,6 @@
    "fullscreen": {
       "allow": true,
       "open": false
-   }
+   },
+   "license": "https://github.com/ExLibrisGroup/cloudapp-tutorials/raw/tutorials/LICENSE"
 }
