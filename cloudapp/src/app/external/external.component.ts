@@ -42,7 +42,7 @@ export class ExternalComponent implements OnInit {
             throw new Error('Record not found');
           } else {
             return Object.assign({items: res.items}, 
-              { id: Object.keys(res.records)[0], ...Object.values(res.records)[0] })
+              { id: Object.keys(res.records)[0] }, Object.values(res.records)[0] )
           }
         }), 
         finalize(() => this.running.search = false)
