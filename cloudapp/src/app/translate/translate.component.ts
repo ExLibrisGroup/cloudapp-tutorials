@@ -39,4 +39,8 @@ export class TranslateComponent implements OnInit {
     );
   }
 
+  setLang(lang: string) {
+    this.translate.use(lang);
+  }
+
 }
