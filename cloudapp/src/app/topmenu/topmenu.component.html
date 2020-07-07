@@ -1,9 +1,10 @@
 <div *ngIf="route.url != '/'" class="title">
-  <h1>{{ title }}</h1>
-  <a [routerLink]="['']">
-    <button mat-raised-button>
+  <div class="cloudapp-actions">
+    <button mat-flat-button color="secondary" [routerLink]="['/']">
       <mat-icon>arrow_back</mat-icon>
       Home
     </button>
-    </a>
+    <ng-content select="[buttons]"></ng-content>
+  </div>
+  <h1>{{ title }}</h1>
 </div>

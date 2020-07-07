@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
-  template: '<app-topmenu></app-topmenu><router-outlet></router-outlet>'
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
 

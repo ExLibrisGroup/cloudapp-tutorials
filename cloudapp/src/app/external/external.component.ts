@@ -14,7 +14,7 @@ import { CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
 })
 export class ExternalComponent implements OnInit {
   @ViewChild(LightboxComponent, {static: true}) lightbox: LightboxComponent;
-  running = { search: false, data: false };
+  running = false;
   record: any;
   images: Array<string> = [];
   authToken: string;
@@ -33,7 +33,7 @@ export class ExternalComponent implements OnInit {
   }
 
   search(identifierType: string, identifier: string) {
-    this.running.search = true;
+    this.running = true;
     this.record = null;
     this.http.get<any>(hathitrustSearchUrl(identifierType, identifier))
       .pipe(
@@ -45,7 +45,7 @@ export class ExternalComponent implements OnInit {
               { id: Object.keys(res.records)[0] }, Object.values(res.records)[0] )
           }
         }), 
-        finalize(() => this.running.search = false)
+        finalize(() => this.running = false)
       )
       .subscribe({
         next: resp => this.record = resp,
@@ -56,7 +56,7 @@ export class ExternalComponent implements OnInit {
   dataApi(id: string) {
     const headers = {'Authorization': `Bearer ${this.authToken}` };
     this.lightbox.headers = headers;
-    this.running.data = true;
+    this.running = true;
     this.http.get<any>(hathitrustMetaUrl(id), { headers } ).pipe(
       map( resp => {
         if (resp['htd:seqmap'] && resp['htd:seqmap'][0] && resp['htd:seqmap'][0]['htd:seq']) {
@@ -64,7 +64,7 @@ export class ExternalComponent implements OnInit {
           return seqmap.map( s => hathitrustImageUrl(id, s.pseq) );
         }
       }),
-      finalize(() => this.running.data = false)
+      finalize(() => this.running = false)
     ).subscribe({
       next: resp => this.images = resp,
       error: e => this.toastr.error(e.message)

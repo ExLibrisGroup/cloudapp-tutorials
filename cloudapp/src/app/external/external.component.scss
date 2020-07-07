@@ -1,3 +1,9 @@
+.section {
+  border: 1px grey solid;
+  padding: 5px 7px;
+  margin-bottom: 10px;
+}
+
 .settings-section {
   display: flex;
   align-content: center;
@@ -9,15 +15,14 @@
   margin: 0 10px;
 }
 
-.pull-right {
-  margin-right: 15px;
-  float: right;
-}
-
 li {
   margin-bottom: 5px;
 }
 
 mat-card {
   margin-bottom: 20px
+}
+
+button {
+  margin-bottom: 20px;
 }

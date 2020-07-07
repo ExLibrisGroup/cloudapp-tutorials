@@ -1,9 +1,10 @@
+<app-topmenu></app-topmenu>
 <div>
   <p translate [translateParams]="{ date: today }">Translate.Intro</p>
 </div>
 <div>
   <p translate>Translate.ButtonDesc</p>
-  <button mat-stroked-button type="button" (click)="hi()">{{ 'Translate.Button' | translate }}</button>
+  <button mat-flat-button color="primary" type="button" (click)="hi()">{{ 'Translate.Button' | translate }}</button>
 </div>
 <div>
   <p translate>Translate.SelectDesc</p>

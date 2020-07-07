@@ -1,3 +1,11 @@
+<app-topmenu>
+  <div buttons>
+    <button mat-flat-button type="button" color="primary" (click)="save()" [disabled]="!(form?.dirty)">Save</button>
+  </div>
+</app-topmenu>
+<div class="loading-shade" *ngIf="saving">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>
 <div *ngIf="form; else noitem">
   <p><strong>BIB Title:</strong> {{ form.get('bib_data.title').value }}</p>
   <form [formGroup]="form">
@@ -16,10 +24,6 @@
       </mat-form-field> 
     </ng-container>
   </form>
-  <div class="commands-container">
-    <button mat-stroked-button type="button" color="primary" (click)="save()" [disabled]="!form.dirty">Save</button>
-    <mat-spinner diameter="30" class="spinner" *ngIf="saving"></mat-spinner>
-  </div>
 </div>
 <ng-template #noitem>      
   Please navigate to an item record.
