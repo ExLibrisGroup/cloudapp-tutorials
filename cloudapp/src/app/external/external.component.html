@@ -26,9 +26,9 @@
       </mat-form-field>
     </section>
   </form>
-  
-  <button mat-flat-button type="button" color="primary" (click)="search(identifierType.value, identifier.value)">Search</button>
-  
+  <div class="cloudapp-actions">
+    <button mat-flat-button type="button" color="primary" (click)="search(identifierType.value, identifier.value)">Search</button>
+  </div>  
   
   <mat-card *ngIf="record">
     <mat-card-header>
@@ -49,6 +49,7 @@
   </mat-card>
 </div>
 
+<hr>
 
 <div class="section" *ngIf="authToken">
   <h2>HathiTrust Data API</h2>
@@ -59,7 +60,9 @@
       <input matInput #data_api_identifier value="mdp.39015000000128">
     </mat-form-field>
   </section>
-  <button mat-flat-button type="button" color="primary" (click)="dataApi(data_api_identifier.value)">Retrieve Metadata</button>
+  <div class="cloudapp-actions">
+    <button mat-flat-button type="button" color="primary" (click)="dataApi(data_api_identifier.value)">Retrieve Metadata</button>
+  </div>
   <mat-card *ngIf="images.length>0">
     <mat-card-header>
       <mat-card-title>HathiTrust Page Scans</mat-card-title>
