@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule, getTranslateModule } from '@exlibris/exl-cloudapp-angular-lib';
-import { ToastrModule } from 'ngx-toastr';
+import { MaterialModule, getTranslateModule, AlertModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -24,16 +23,10 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { SelectEntitiesComponent } from './multi-select/select-entities/select-entities.component';
 import { LightboxComponent } from './external/lightbox/lightbox.component'
 import { ErrorComponent } from './static/error.component';
-
-export function getToastrModule() {
-  return ToastrModule.forRoot({
-    positionClass: 'toast-top-right',
-    timeOut: 2000
-  });
-}
+import { ConfirmationDialog, StyleComponent } from './style/style.component';
 
 @NgModule({
-   declarations: [
+   declarations: [	
       AppComponent,
       MainComponent,
       TopmenuComponent,
@@ -50,7 +43,9 @@ export function getToastrModule() {
       MultiSelectComponent,
       SelectEntitiesComponent,
       LightboxComponent,
-      ErrorComponent
+      ErrorComponent,
+      StyleComponent,
+      ConfirmationDialog,
    ],
    imports: [
       MaterialModule,
@@ -61,13 +56,16 @@ export function getToastrModule() {
       FormsModule,
       ReactiveFormsModule,
       getTranslateModule(),
-      getToastrModule()
+      AlertModule,
    ],
    providers: [
       Title
    ],
    bootstrap: [
       AppComponent
+   ],
+   entryComponents: [
+      ConfirmationDialog
    ]
 })
 export class AppModule { }

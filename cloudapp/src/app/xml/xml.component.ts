@@ -2,8 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { Subscription } from 'rxjs';
 import { finalize, switchMap, tap } from 'rxjs/operators';
-import { CloudAppEventsService, PageInfo, EntityType, CloudAppRestService } from '@exlibris/exl-cloudapp-angular-lib';
-import { ToastrService } from 'ngx-toastr';
+import { CloudAppEventsService, PageInfo, EntityType, CloudAppRestService, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
 import { Bib, BibUtils } from './bib-utils';
 
 @Component({
@@ -22,7 +21,7 @@ export class XmlComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private eventsService: CloudAppEventsService,
     private restService: CloudAppRestService,
-    private toastr: ToastrService
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -50,11 +49,11 @@ export class XmlComponent implements OnInit, OnDestroy {
     this.bib = this.bibUtils.addNoteToBib(this.bib);
     this.bibUtils.updateBib(this.bib).pipe(
       switchMap(res => this.eventsService.refreshPage()),
-      tap(() => this.toastr.success("Note added to Bib")),
+      tap(() => this.alert.success("Note added to Bib")),
       finalize(() => this.running=false)
     )
     .subscribe({
-      error: e => this.toastr.error(e.message)
+      error: e => this.alert.error(e.message)
     });
   }
 }

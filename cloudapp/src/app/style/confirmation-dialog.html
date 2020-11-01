@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Clear list</h2>
+<mat-dialog-content>
+  <p>Are you sure you wish to reset the list?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="secondary" mat-dialog-close>No, keep list</button>
+  <button mat-flat-button color="secondary" [mat-dialog-close]="true" cdkFocusInitial>Yes, reset list</button>
+</mat-dialog-actions>

@@ -1,24 +1,27 @@
-<app-topmenu></app-topmenu>
-<div>
-  <p translate [translateParams]="{ date: today }">Translate.Intro</p>
-</div>
-<div>
-  <p translate>Translate.ButtonDesc</p>
-  <button mat-flat-button color="primary" type="button" (click)="hi()">{{ 'Translate.Button' | translate }}</button>
-</div>
-<div>
-  <p translate>Translate.SelectDesc</p>
-  <mat-form-field>
-    <mat-label translate>Translate.Policy</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let policy of policies" [value]="policy.code">
-        {{ policy.desc | translate }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<hr/>
-<div class="langs">
-  <a (click)="setLang('en')">English</a> | <a (click)="setLang('es')">Español</a>
+<div id="page-container">
+  <div id="content-wrap">
+    <app-topmenu></app-topmenu>
+    <div>
+      <p translate [translateParams]="{ date: today }">Translate.Intro</p>
+    </div>
+    <div>
+      <p translate>Translate.ButtonDesc</p>
+      <button mat-flat-button color="primary" type="button" (click)="hi()">{{ 'Translate.Button' | translate }}</button>
+    </div>
+    <div>
+      <p translate>Translate.SelectDesc</p>
+      <mat-form-field>
+        <mat-label translate>Translate.Policy</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let policy of policies" [value]="policy.code">
+            {{ policy.desc | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <footer id="footer">
+    <p><a (click)="setLang('en')">English</a> | <a (click)="setLang('es')">Español</a></p>
+  </footer>
 </div>
 
