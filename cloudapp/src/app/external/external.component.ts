@@ -2,10 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
 import { map, finalize } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
 import { LightboxComponent } from './lightbox/lightbox.component';
-import { CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
+import { CloudAppEventsService, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
 
 @Component({
   selector: 'app-external',
@@ -23,7 +22,7 @@ export class ExternalComponent implements OnInit {
     private appService: AppService,
     private eventsService: CloudAppEventsService,
     private http: HttpClient,
-    private toastr: ToastrService
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -49,7 +48,7 @@ export class ExternalComponent implements OnInit {
       )
       .subscribe({
         next: resp => this.record = resp,
-        error: e => this.toastr.error(e.message)
+        error: e => this.alert.error(e.message)
       });
   }
 
@@ -67,7 +66,7 @@ export class ExternalComponent implements OnInit {
       finalize(() => this.running = false)
     ).subscribe({
       next: resp => this.images = resp,
-      error: e => this.toastr.error(e.message)
+      error: e => this.alert.error(e.message)
     })
   }
 

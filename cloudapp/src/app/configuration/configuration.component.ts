@@ -1,8 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService, InitData } from '@exlibris/exl-cloudapp-angular-lib';
-import { ToastrService } from 'ngx-toastr';
+import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService, InitData, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
 import { CanActivate, Router } from '@angular/router';
 import { Observable, iif, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -21,7 +20,7 @@ export class ConfigurationComponent implements OnInit {
     private appService: AppService,
     private fb: FormBuilder,
     private configService: CloudAppConfigService,
-    private toastr: ToastrService
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -44,10 +43,10 @@ export class ConfigurationComponent implements OnInit {
     this.saving = true;
     this.configService.set(this.form.value).subscribe(
       () => {
-        this.toastr.success('Configuration successfully saved.');
+        this.alert.success('Configuration successfully saved.');
         this.form.markAsPristine();
       },
-      err => this.toastr.error(err.message),
+      err => this.alert.error(err.message),
       ()  => this.saving = false
     );
   }  

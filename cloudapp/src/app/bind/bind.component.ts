@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormGroup } from '@angular/forms';
-import { CloudAppRestService, CloudAppEventsService, PageInfo, HttpMethod, FormGroupUtil } from '@exlibris/exl-cloudapp-angular-lib';
+import { CloudAppRestService, CloudAppEventsService, PageInfo, HttpMethod, FormGroupUtil, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
 import { Subscription } from 'rxjs';
 import { finalize, switchMap, tap } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bind',
@@ -20,7 +19,7 @@ export class BindComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private restService: CloudAppRestService,
     private eventsService: CloudAppEventsService,
-    private toastr: ToastrService
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -48,11 +47,11 @@ export class BindComponent implements OnInit, OnDestroy {
       method: HttpMethod.PUT
     }).pipe(
       switchMap(res => this.eventsService.refreshPage()),
-      tap(() => this.toastr.success('Item updated')),
+      tap(() => this.alert.success('Item updated')),
       finalize(() => this.saving=false)
     )
     .subscribe({
-      error: e => this.toastr.error(e.message)
+      error: e => this.alert.error(e.message)
     });
   }
 }

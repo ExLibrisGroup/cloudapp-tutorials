@@ -1,0 +1,26 @@
+<app-topmenu>
+  <div buttons>
+    <button mat-flat-button type="button" color="primary" (click)="reset()">Reset List</button>
+  </div>  
+</app-topmenu>
+<div class="loading-shade" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>
+<p>
+  In order to maintain a consistent experience across Cloud Apps, Ex Libris has developed a <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/" target="styleguide">Cloud App Style Guide</a>. In this tutorial we will show an example of <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/#layout" target="styleguide">action buttons</a>, <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/#loading" target="styleguide">loading spinner</a>, <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/#icons" target="styleguide">icons as buttons</a>, <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/#dialog" target="styleguide">confirmation messages</a>, and an <a href="https://developers.exlibrisgroup.com/cloudapps/docs/style/#emptylist" target="styleguide">empty list</a>.
+</p>
+<h2>Items</h2>
+<div *ngIf="items.length > 0; else emptyList">
+  <mat-list>
+    <mat-list-item *ngFor="let item of items; index as i">
+      {{item}}
+      <i class="uxf-icon uxf-close eca-button" (click)="remove(i)"></i>
+    </mat-list-item>
+  </mat-list>
+</div>
+<ng-template #emptyList>
+  <div id="emptyList">
+    <span class="uxf-icon uxf-list" style="font-size: 3em;"></span>
+    <div>Add items to the list.</div>
+  </div>
+</ng-template>
