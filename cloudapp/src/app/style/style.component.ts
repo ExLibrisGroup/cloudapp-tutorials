@@ -43,13 +43,12 @@ export class StyleComponent implements OnInit {
   }
 
   reset() {
-    const dialogRef = this.dialog.open(ConfirmationDialog);
+    const dialogRef = this.dialog.open(ConfirmationDialog, { autoFocus: false });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this._reset().subscribe({
-          complete: () => this.alert.success('List successfully reset.')
-        });
-      }
+      if (!result) return;
+      this._reset().subscribe({
+        complete: () => this.alert.success('List successfully reset.')
+      });
     });
   }
 }
