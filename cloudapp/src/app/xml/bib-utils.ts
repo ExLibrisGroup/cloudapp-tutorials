@@ -19,13 +19,13 @@ export class BibUtils {
   }
 
   /** Retrieve a single BIB record */
-  getBib (mmsId: string): Observable<Bib> {
-    return this._restService.call(`/bibs/${mmsId}`);
+  getBib (mmsId: string) {
+    return this._restService.call<Bib>(`/bibs/${mmsId}`);
   }   
 
   /** Update a BIB record with the specified MARCXML */
-  updateBib( bib: Bib ): Observable<Bib> {
-    return this._restService.call( {
+  updateBib( bib: Bib ) {
+    return this._restService.call<Bib>( {
       url: `/bibs/${bib.mms_id}`,
       headers: { 
         "Content-Type": "application/xml",

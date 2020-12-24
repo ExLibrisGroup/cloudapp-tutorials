@@ -65,15 +65,7 @@ export class ConfigurationGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.eventsService.getInitData().pipe(
-      /* Until primaryId is available: */
-      switchMap(data => iif(() => 
-        data.user.primaryId==null,
-        this.restService.call(`/users?q=${query(data)}`).pipe(
-          map( resp => resp.user[0].primary_id )
-        ),
-        of(data.user.primaryId)
-      )),
-      switchMap( primaryId => this.restService.call(`/users/${primaryId}`)),
+      switchMap( initData => this.restService.call(`/users/${initData.user.primaryId}`)),
       map( user => {
         if (!user.user_role.some(role=>role.role_type.value=='221')) {
           this.router.navigate(['/error'], 
@@ -85,6 +77,3 @@ export class ConfigurationGuard implements CanActivate {
     );
   }
 }
-
-const query = (data: InitData) => `first_name~${q(data.user.firstName)}+AND+last_name~${q(data.user.lastName)}`;
-const q = val => encodeURIComponent(val.replace(' ', '+'));
