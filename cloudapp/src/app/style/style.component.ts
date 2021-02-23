@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { AlertService } from '@exlibris/exl-cloudapp-angular-lib';
-import { EMPTY, of } from 'rxjs';
-import { delay, finalize, map, tap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { delay, finalize } from 'rxjs/operators';
 import { AppService } from '../app.service';
 
 const INIT_VALUES = ['Lorem ipsum dolor sit amet', 'Pellentesque sit amet tempor tellus', 'Vivamus quis velit eget turpis', 'Curabitur ut justo metus'];
