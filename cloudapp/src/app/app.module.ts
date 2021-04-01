@@ -4,6 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, getTranslateModule, AlertModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectEntitiesModule } from 'eca-select-entities';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,6 @@ import { StoreComponent } from './store/store.component';
 import { TranslateComponent } from './translate/translate.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
-import { SelectEntitiesComponent } from './multi-select/select-entities/select-entities.component';
 import { LightboxComponent } from './external/lightbox/lightbox.component'
 import { ErrorComponent } from './static/error.component';
 import { ConfirmationDialog, StyleComponent } from './style/style.component';
@@ -41,7 +41,6 @@ import { ConfirmationDialog, StyleComponent } from './style/style.component';
       TranslateComponent,
       ConfigurationComponent,
       MultiSelectComponent,
-      SelectEntitiesComponent,
       LightboxComponent,
       ErrorComponent,
       StyleComponent,
@@ -57,6 +56,7 @@ import { ConfirmationDialog, StyleComponent } from './style/style.component';
       ReactiveFormsModule,
       getTranslateModule(),
       AlertModule,
+      SelectEntitiesModule,
    ],
    providers: [
       Title

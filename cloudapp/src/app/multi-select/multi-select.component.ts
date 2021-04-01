@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Entity, CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
-import { Subscription } from 'rxjs';
+import { CloudAppEventsService, Entity } from '@exlibris/exl-cloudapp-angular-lib';
 
 @Component({
   selector: 'app-multi-select',
@@ -9,9 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./multi-select.component.scss']
 })
 export class MultiSelectComponent implements OnInit {
-  private pageLoad$: Subscription;
-  ids = new Set<string>();
-  entities: Entity[];
+  public entities$ = this.eventsService.entities$;
 
   constructor(
     private appService: AppService,
@@ -20,18 +17,17 @@ export class MultiSelectComponent implements OnInit {
 
   ngOnInit() {
     this.appService.setTitle('Multi-select');
-    this.pageLoad$ = this.eventsService.onPageLoad( pageInfo => {
-      this.entities = (pageInfo.entities||[]);
-    });
   }
 
   ngOnDestroy(): void {
-    this.pageLoad$.unsubscribe();
   }
 
-  onEntitySelected(event) {
-    if (event.checked) this.ids.add(event.mmsId);
-    else this.ids.delete(event.mmsId);
+  selectedEntities = new Set<string>();
+  isEntitySelected = (entity: Entity) => this.selectedEntities.has(entity.id);
+
+  onEntitySelected(event: {entity: Entity, checked: boolean}) {
+    if (event.checked) this.selectedEntities.add(event.entity.id);
+    else this.selectedEntities.delete(event.entity.id);
   }
 
 
