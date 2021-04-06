@@ -1,13 +1,13 @@
-<app-topmenu></app-topmenu>
-<p>A total of <strong>{{ selectedEntities.size }}</strong> items have been selected.</p>
-<div *ngIf="(entities$ | async).length>0 else noEntities">
-  <p>Select the desired items:</p>
+<app-topmenu>
+  <div buttons>
+    <button mat-flat-button color="secondary" [disabled]="selectedEntities.length==0" (click)="selectEntities.clear()">Clear</button>
+  </div>
+</app-topmenu>
+<p>A total of <strong>{{ selectedEntities.length }}</strong> items have been selected.</p>
+<div>
   <eca-select-entities #selectEntities 
-    (entitySelected)="onEntitySelected($event)"
-    [entityList]="entities$ | async"
-    [isEntitySelected]="isEntitySelected">
+    [(selected)]="selectedEntities"
+    >
   </eca-select-entities>
 </div>
-<ng-template #noEntities>
-  Please navigate to a list.
-</ng-template>
+<div *ngIf="selectEntities.count == 0">Please navigate to a list.</div>
