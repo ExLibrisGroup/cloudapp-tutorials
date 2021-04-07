@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { CloudAppEventsService, Entity } from '@exlibris/exl-cloudapp-angular-lib';
+import { Entity } from '@exlibris/exl-cloudapp-angular-lib';
 
 @Component({
   selector: 'app-multi-select',
@@ -8,7 +8,8 @@ import { CloudAppEventsService, Entity } from '@exlibris/exl-cloudapp-angular-li
   styleUrls: ['./multi-select.component.scss']
 })
 export class MultiSelectComponent implements OnInit {
-
+  count = 0;
+  
   constructor(
     private appService: AppService,
   ) { }

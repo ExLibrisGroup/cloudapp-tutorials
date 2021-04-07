@@ -4,10 +4,9 @@
   </div>
 </app-topmenu>
 <p>A total of <strong>{{ selectedEntities.length }}</strong> items have been selected.</p>
-<div>
-  <eca-select-entities #selectEntities 
-    [(selected)]="selectedEntities"
-    >
-  </eca-select-entities>
-</div>
-<div *ngIf="selectEntities.count == 0">Please navigate to a list.</div>
+<div *ngIf="count == 0">Please navigate to a list.</div>
+<eca-select-entities #selectEntities 
+  [(selected)]="selectedEntities"
+  (count)="count=$event"
+  >
+</eca-select-entities>

@@ -4,7 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, getTranslateModule, AlertModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectEntitiesModule } from 'eca-select-entities';
+import { SelectEntitiesModule } from 'eca-components';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
