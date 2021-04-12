@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
+import { menu } from './main-menu';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +10,7 @@ import { CloudAppEventsService } from '@exlibris/exl-cloudapp-angular-lib';
 })
 export class MainComponent implements OnInit {
   isAdmin = false;
+  menu = menu;
 
   constructor(
     private appService: AppService,

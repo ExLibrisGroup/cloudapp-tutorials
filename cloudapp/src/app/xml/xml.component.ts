@@ -28,7 +28,7 @@ export class XmlComponent implements OnInit, OnDestroy {
     this.appService.setTitle('Working with XML');
     this.bibUtils = new BibUtils(this.restService);
     this.pageLoad$ = this.eventsService.onPageLoad((pageInfo: PageInfo) => {
-      const entities = (pageInfo.entities||[]).filter(e=>[EntityType.BIB_MMS, 'IEP', 'BIB'].includes(e.type));
+      const entities = (pageInfo.entities||[]).filter(e=>[EntityType.BIB_MMS].includes(e.type));
       if (entities.length > 0) {
         this.bibUtils.getBib(entities[0].id).subscribe(bib=>
           this.bib = (bib.record_format=='marc21') ? bib : null

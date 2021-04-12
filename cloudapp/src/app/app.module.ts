@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule, getTranslateModule, AlertModule } from '@exlibris/exl-cloudapp-angular-lib';
+import { MaterialModule, getTranslateModule, AlertModule, MenuModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectEntitiesModule } from 'eca-components';
 
@@ -57,6 +57,7 @@ import { ConfirmationDialog, StyleComponent } from './style/style.component';
       getTranslateModule(),
       AlertModule,
       SelectEntitiesModule,
+      MenuModule,
    ],
    providers: [
       Title

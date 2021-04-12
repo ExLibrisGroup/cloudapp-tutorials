@@ -1,17 +1,6 @@
 <section>
   <p>This app includes all of the code referenced in the <a href="https://developers.exlibrisgroup.com/cloudapps/tutorials" target="_blank">tutorials section of the Cloud Apps documentation</a>. The following menu will lead you to the component referenced in the corresponding tutorial:</p>
-  <ul>
-    <li><a [routerLink]="['newroute']">Adding additional routes</a></li>
-    <li><a [routerLink]="['theming']">Using Material components & theming</a></li>
-    <li><a [routerLink]="['settings']">Using the Settings Service</a></li>
-    <li><a [routerLink]="['parallel']">Making parallel API requests</a></li>
-    <li><a [routerLink]="['external']">Reaching outside your app</a></li>
-    <li><a [routerLink]="['xml']">Working with bibliographic records in XML</a></li>
-    <li><a [routerLink]="['bind']">Model binding with REST objects</a></li>  
-    <li><a [routerLink]="['store']">Using the Store Service</a></li>  
-    <li><a [routerLink]="['translate']">Translating your app</a></li>
-    <li><a [routerLink]="['multi-select']">Selecting multiple entities</a></li>
-    <li><a [routerLink]="['configuration']">Using the Configuration Service</a></li>
-    <li><a [routerLink]="['style']">Following the Style Guide</a></li>
-  </ul>
+  <eca-menu>
+    <eca-menu-item *ngFor="let item of menu" [title]="item.title" [routerLink]="item.link" [icon]="item.icon">{{item.text}}</eca-menu-item>
+  </eca-menu>
 </section>
