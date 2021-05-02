@@ -2,75 +2,82 @@
 <div class="loading-shade" *ngIf="running">
   <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
 </div>
-<div class="section">
-  <form>
-    <h2>HathiTrust Bibliographic API</h2>
-    <p>This API is open and does not require authentication. Enter an identifier and select an identifier type to search the API.</p>
-    <section class="settings-section">
-      <mat-form-field>
-        <mat-label>Identifier Type</mat-label>
-        <mat-select value="isbn" #identifierType>
-          <mat-option value="oclc">OCLC Number</mat-option>
-          <mat-option value="lccn">LCCN</mat-option>
-          <mat-option value="issn">ISSN</mat-option>
-          <mat-option value="isbn">ISBN</mat-option>
-          <mat-option value="htid">HathiTrust Volume ID</mat-option>
-          <mat-option value="recordnumber">HathiTrust record number</mat-option>
-        </mat-select>
-      </mat-form-field>  
-    </section>
+<mat-tab-group color="primary" backgroundColor="accent">
+  <mat-tab label="Open">
+    <form>
+      <h2>HathiTrust Bibliographic API</h2>
+      <p>This API is open and does not require authentication. Enter an identifier and select an identifier type to search the API.</p>
+      <section class="settings-section">
+        <mat-form-field>
+          <mat-label>Identifier Type</mat-label>
+          <mat-select value="isbn" #identifierType>
+            <mat-option value="oclc">OCLC Number</mat-option>
+            <mat-option value="lccn">LCCN</mat-option>
+            <mat-option value="issn">ISSN</mat-option>
+            <mat-option value="isbn">ISBN</mat-option>
+            <mat-option value="htid">HathiTrust Volume ID</mat-option>
+            <mat-option value="recordnumber">HathiTrust record number</mat-option>
+          </mat-select>
+        </mat-form-field>  
+      </section>
+      <section class="settings-section">
+        <mat-form-field>
+          <mat-label>Identifier</mat-label>
+          <input matInput #identifier value="0394530934">
+        </mat-form-field>
+      </section>
+    </form>
+    <div class="cloudapp-actions">
+      <button mat-flat-button type="button" color="primary" (click)="search(identifierType.value, identifier.value)">Search</button>
+    </div>  
+    
+    <mat-card *ngIf="record">
+      <mat-card-header>
+        <mat-card-title>HathiTrust Record</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img *ngIf="record.items.length>0" src="https://babel.hathitrust.org/cgi/imgsrv/cover?id={{record.items[0].htid}}" class="pull-right">
+        <ul>
+          <li><strong>Record ID: </strong> <a href="{{record.recordURL}}" target="_blank">{{ record.id }}</a></li>
+          <li><strong>Title: </strong>{{ record.titles[0] }}</li>
+          <li><strong>Held By:</strong>
+            <ul>
+              <li *ngFor="let item of record.items"><a href="{{item.itemURL}}" target="_blank">{{item.orig}}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Authenticated" *ngIf="authToken">
+    <h2>HathiTrust Data API</h2>
+    <p>This API is restricted and requires authentication.</p>
     <section class="settings-section">
       <mat-form-field>
         <mat-label>Identifier</mat-label>
-        <input matInput #identifier value="0394530934">
+        <input matInput #data_api_identifier value="mdp.39015000000128">
       </mat-form-field>
     </section>
-  </form>
-  <div class="cloudapp-actions">
-    <button mat-flat-button type="button" color="primary" (click)="search(identifierType.value, identifier.value)">Search</button>
-  </div>  
-  
-  <mat-card *ngIf="record">
-    <mat-card-header>
-      <mat-card-title>HathiTrust Record</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <img *ngIf="record.items.length>0" src="https://babel.hathitrust.org/cgi/imgsrv/cover?id={{record.items[0].htid}}" class="pull-right">
-      <ul>
-        <li><strong>Record ID: </strong> <a href="{{record.recordURL}}" target="_blank">{{ record.id }}</a></li>
-        <li><strong>Title: </strong>{{ record.titles[0] }}</li>
-        <li><strong>Held By:</strong>
-          <ul>
-            <li *ngFor="let item of record.items"><a href="{{item.itemURL}}" target="_blank">{{item.orig}}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<hr>
-
-<div class="section" *ngIf="authToken">
-  <h2>HathiTrust Data API</h2>
-  <p>This API is restricted and requires authentication.</p>
-  <section class="settings-section">
-    <mat-form-field>
-      <mat-label>Identifier</mat-label>
-      <input matInput #data_api_identifier value="mdp.39015000000128">
-    </mat-form-field>
-  </section>
-  <div class="cloudapp-actions">
-    <button mat-flat-button type="button" color="primary" (click)="dataApi(data_api_identifier.value)">Retrieve Metadata</button>
-  </div>
-  <mat-card *ngIf="images.length>0">
-    <mat-card-header>
-      <mat-card-title>HathiTrust Page Scans</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Retrieved <strong>{{images.length}}</strong> pages from the API for this title.</p>
-      <button mat-flat-button type="button" color="primary" (click)="openModal()">View images</button>
-    </mat-card-content>
-  </mat-card>
-</div>
+    <div class="cloudapp-actions">
+      <button mat-flat-button type="button" color="primary" (click)="dataApi(data_api_identifier.value)">Retrieve Metadata</button>
+    </div>
+    <mat-card *ngIf="images.length>0">
+      <mat-card-header>
+        <mat-card-title>HathiTrust Page Scans</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Retrieved <strong>{{images.length}}</strong> pages from the API for this title.</p>
+        <button mat-flat-button type="button" color="primary" (click)="openModal()">View images</button>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="PostMessage">
+    <div class="cloudapp-actions">
+      <button mat-flat-button type="button" color="primary" (click)="openPopup()">Open Pop-up</button>
+    </div>
+    <p *ngIf="popupResponse">
+      Thanks for responding! You have <span *ngIf="!popupResponse.val">NOT </span> agreed.
+    </p>
+  </mat-tab>
+</mat-tab-group>
 <app-lightbox></app-lightbox>

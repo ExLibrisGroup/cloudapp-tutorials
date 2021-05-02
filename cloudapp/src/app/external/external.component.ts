@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
 import { map, finalize } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LightboxComponent } from './lightbox/lightbox.component';
 import { CloudAppEventsService, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
+
+const WINDOW_PROPS = "width=750,height=500,resizable,";
 
 @Component({
   selector: 'app-external',
@@ -17,6 +19,7 @@ export class ExternalComponent implements OnInit {
   record: any;
   images: Array<string> = [];
   authToken: string;
+  popupResponse: any;
 
   constructor(
     private appService: AppService,
@@ -74,6 +77,18 @@ export class ExternalComponent implements OnInit {
     this.lightbox.openModal();
     this.lightbox.images = this.images;
     this.lightbox.currentSlide(1);
+  }
+
+  openPopup() {
+    this.popupResponse = null;
+    window.open(environment.popupUrl, "_blank", WINDOW_PROPS);
+  }
+
+  @HostListener('window:message', ['$event'])
+  onMessage(event: MessageEvent) {
+    if (event.data && event.data.tutorialReponse) {
+      this.popupResponse = event.data.tutorialReponse;
+    }
   }
 }
 
