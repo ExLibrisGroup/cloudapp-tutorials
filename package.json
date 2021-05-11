@@ -13,7 +13,7 @@
     "@exlibris/exl-cloudapp-angular-lib": "^0.6.0",
     "@exlibris/exl-cloudapp-base": "^0.6.0",
     "@ngx-translate/core": "^12.1.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "eca-components": "^1.2.1",
     "ngx-toastr": "^12.0.0",
     "ngx-translate-parser-plural-select": "^1.1.3",
