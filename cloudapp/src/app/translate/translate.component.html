@@ -1,4 +1,4 @@
-<div id="page-container">
+<div id="page-container" [dir]="dir">
   <div id="content-wrap">
     <app-topmenu></app-topmenu>
     <div>
@@ -21,7 +21,7 @@
     </div>
   </div>
   <footer id="footer">
-    <p><a (click)="setLang('en')">English</a> | <a (click)="setLang('es')">Español</a></p>
+    <p><a (click)="setLang('en')">English</a> | <a (click)="setLang('es')">Español</a> | <a (click)="setLang('he')">עברית</a></p>
   </footer>
 </div>
 

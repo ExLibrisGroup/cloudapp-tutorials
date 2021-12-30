@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { CloudAppEventsService, InitData, CloudAppRestService } from '@exlibris/exl-cloudapp-angular-lib';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 
@@ -14,12 +14,12 @@ export class TranslateComponent implements OnInit {
   policies: { code: string, desc: string }[];
   today = new Date().toLocaleDateString();
   blockTypes: any;
+  dir = "ltr";
 
   constructor(
     private appService: AppService,
     private translate: TranslateService,
     private eventsService: CloudAppEventsService,
-    private restService: CloudAppRestService
   ) { }
 
   ngOnInit() {
@@ -31,6 +31,11 @@ export class TranslateComponent implements OnInit {
       { code: 'M', desc: _('Translate.Policies.MONTHLY') },
       { code: 'Y', desc: _('Translate.Policies.YEARLY') },
     ];
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) =>
+    {
+      this.dir = ['ar', 'he'].includes(event.lang) ? 'rtl' : 'ltr';
+    });
+
   }
 
   hi() {
