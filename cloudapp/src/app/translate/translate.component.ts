@@ -34,6 +34,7 @@ export class TranslateComponent implements OnInit {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) =>
     {
       this.dir = ['ar', 'he'].includes(event.lang) ? 'rtl' : 'ltr';
+      this.appService.setTitle(this.translate.instant('Translate.Title'));
     });
 
   }
