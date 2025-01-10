@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, AlertModule, MenuModule, CloudAppTranslateModule } from '@exlibris/exl-cloudapp-angular-lib';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectEntitiesModule } from 'eca-components';
+import { SelectEntitiesModule } from '@exlibris/eca-components';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,47 +26,44 @@ import { ErrorComponent } from './static/error.component';
 import { ConfirmationDialog, StyleComponent } from './style/style.component';
 
 @NgModule({
-   declarations: [	
-      AppComponent,
-      MainComponent,
-      TopmenuComponent,
-      NewrouteComponent,
-      ThemingComponent,
-      SettingsComponent,
-      ParallelComponent,
-      ExternalComponent,
-      XmlComponent,
-      BindComponent,
-      StoreComponent,
-      TranslateComponent,
-      ConfigurationComponent,
-      MultiSelectComponent,
-      LightboxComponent,
-      ErrorComponent,
-      StyleComponent,
-      ConfirmationDialog,
-   ],
-   imports: [
-      MaterialModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      CloudAppTranslateModule.forRoot(),
-      AlertModule,
-      SelectEntitiesModule,
-      MenuModule,
-   ],
-   providers: [
-      Title
-   ],
-   bootstrap: [
-      AppComponent
-   ],
-   entryComponents: [
-      ConfirmationDialog
-   ]
+    declarations: [
+        AppComponent,
+        MainComponent,
+        TopmenuComponent,
+        NewrouteComponent,
+        ThemingComponent,
+        SettingsComponent,
+        ParallelComponent,
+        ExternalComponent,
+        XmlComponent,
+        BindComponent,
+        StoreComponent,
+        TranslateComponent,
+        ConfigurationComponent,
+        MultiSelectComponent,
+        LightboxComponent,
+        ErrorComponent,
+        StyleComponent,
+        ConfirmationDialog,
+    ],
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        MaterialModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CloudAppTranslateModule.forRoot(),
+        AlertModule,
+        SelectEntitiesModule,
+        MenuModule
+    ],
+    providers: [
+        Title,
+        provideHttpClient(withInterceptorsFromDi())
+    ]
 })
 export class AppModule { }

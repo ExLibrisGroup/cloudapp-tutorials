@@ -8,6 +8,13 @@
   margin-right: 10px;
 }
 
-.mat-list {
-  max-width: 400px;
+::ng-deep {
+  mat-list {
+    max-width: 400px;
+    .mat-mdc-list-item-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 }
