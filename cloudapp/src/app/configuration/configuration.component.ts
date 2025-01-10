@@ -1,10 +1,10 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CloudAppConfigService, CloudAppEventsService, CloudAppRestService, InitData, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
-import { CanActivate, Router } from '@angular/router';
-import { Observable, iif, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { AlertService, CloudAppConfigService, CloudAppEventsService, CloudAppRestService } from '@exlibris/exl-cloudapp-angular-lib';
+import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { AppService } from '../app.service';
 import { ErrorMessages } from '../static/error.component';
 
 @Component({
@@ -13,9 +13,10 @@ import { ErrorMessages } from '../static/error.component';
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent implements OnInit {
+
   form: FormGroup;
   saving = false;
-  
+
   constructor(
     private appService: AppService,
     private fb: FormBuilder,
@@ -32,11 +33,11 @@ export class ConfigurationComponent implements OnInit {
   }
 
   load() {
-    this.configService.getAsFormGroup().subscribe( config => {
-      if (Object.keys(config.value).length!=0) {
+    this.configService.getAsFormGroup().subscribe(config => {
+      if (Object.keys(config.value).length != 0) {
         this.form = config;
       }
-    });   
+    });
   }
 
   save() {
@@ -47,33 +48,35 @@ export class ConfigurationComponent implements OnInit {
         this.form.markAsPristine();
       },
       err => this.alert.error(err.message),
-      ()  => this.saving = false
+      () => this.saving = false
     );
-  }  
+  }
 
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class ConfigurationGuard implements CanActivate {
-  constructor (
+export class ConfigurationGuard {
+
+  constructor(
     private eventsService: CloudAppEventsService,
     private restService: CloudAppRestService,
     private router: Router
-  ) {}
+  ) { }
 
   canActivate(): Observable<boolean> {
     return this.eventsService.getInitData().pipe(
-      switchMap( initData => this.restService.call(`/users/${initData.user.primaryId}`)),
-      map( user => {
-        if (!user.user_role.some(role=>role.role_type.value=='221')) {
-          this.router.navigate(['/error'], 
-            { queryParams: { error: ErrorMessages.NO_ACCESS }});
+      switchMap(initData => this.restService.call(`/users/${initData.user.primaryId}`)),
+      map(user => {
+        if (!user.user_role.some(role => role.role_type.value == '221')) {
+          this.router.navigate(['/error'],
+            { queryParams: { error: ErrorMessages.NO_ACCESS } });
           return false;
         }
         return true;
       })
     );
   }
+
 }
