@@ -22,7 +22,7 @@
     "@exlibris/exl-cloudapp-angular-lib": "^2.0.0-rc.2",
     "@exlibris/exl-cloudapp-base": "^2.0.0-rc.2",
     "@ngx-translate/core": "16.0.3",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "loglevel": "1.9.2",
     "ngx-toastr": "19.0.0",
     "ngx-translate-parser-plural-select": "^1.1.3",
